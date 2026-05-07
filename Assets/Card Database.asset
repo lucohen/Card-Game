@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 003951c93705e4e468338172fb9260df, type: 3}
+  m_Name: Card Database
+  m_EditorClassIdentifier: 
+  OuterRimPilots:
+  - {fileID: 11400000, guid: 7b55d32decfd1419b844ec8c678126f7, type: 2}
+  - {fileID: 11400000, guid: 2a23c07c3b41d4d5e86e386fd49449d8, type: 2}
+  - {fileID: 11400000, guid: 3b15e3ee50e29487ebcc8da4c5419956, type: 2}
+  - {fileID: 11400000, guid: 7cf198eeb7dfd489ea9708110d619845, type: 2}
+  - {fileID: 11400000, guid: fbffb921dd071425b914bdbaa3f6cb7b, type: 2}
+  - {fileID: 11400000, guid: ed2d7ef8a5dec4fe5b1c7f029150ce9b, type: 2}
+  - {fileID: 11400000, guid: 765843f5fd61b435191fa4a8af0b6405, type: 2}
+  - {fileID: 11400000, guid: 4d6ecb7aed1584bafbb4e9016004adc5, type: 2}
+  - {fileID: 11400000, guid: 8b853129e90884fdd825f6ed8c36b908, type: 2}
+  - {fileID: 11400000, guid: 83202187b4ca446f1804deed4f5444b6, type: 2}
+  RebelStarterCards:
+  - {fileID: 11400000, guid: eb90fd8bd8c0e43e68586662f36a7567, type: 2}
+  - {fileID: 11400000, guid: fb20fb06ef0f343f2af66d68193558fb, type: 2}
+  - {fileID: 11400000, guid: c12c56c88990c4bc893f0faed219ad95, type: 2}
+  - {fileID: 11400000, guid: 52f151490543a4b6aab5a1c9ac366632, type: 2}
+  - {fileID: 11400000, guid: e7ec3a918456a45839316585067789d9, type: 2}
+  - {fileID: 11400000, guid: e108cf5bfb6434240954e2bda8c1968a, type: 2}
+  - {fileID: 11400000, guid: bcd41a97095a34cd095128200070541d, type: 2}
+  - {fileID: 11400000, guid: 02774b72a23d14a70b666ceecde4b20a, type: 2}
+  - {fileID: 11400000, guid: c89f18572177a45778ebf0ff01b03af3, type: 2}
+  - {fileID: 11400000, guid: 2139eba0f814748f088d2bc0e1c324c5, type: 2}
+  - {fileID: 11400000, guid: 6cd08d4f6dfec4f229f07667dc2696f6, type: 2}
+  EmpireStarterCards:
+  - {fileID: 11400000, guid: b273d4776c1324e16ab261993057d484, type: 2}
+  - {fileID: 11400000, guid: 7196f02522e984b28b8193db80f3ad6a, type: 2}
+  - {fileID: 11400000, guid: 3e0cc214836e244a2a6e7bbedbe4e8af, type: 2}
+  - {fileID: 11400000, guid: be181d6020a414233a1450339b52cb6e, type: 2}
+  - {fileID: 11400000, guid: f3d8449c5e1bd4e93b593915c4972a94, type: 2}
+  - {fileID: 11400000, guid: 7f335ca6ebebe485a95c0a517e5c197b, type: 2}
+  - {fileID: 11400000, guid: 2a63e34c14be64508a75caf38dfc43d5, type: 2}
+  - {fileID: 11400000, guid: f7e86ba78deed4cc4a420427f630e0ce, type: 2}
+  - {fileID: 11400000, guid: 550078929df7c43549d223a29ab4a758, type: 2}
+  - {fileID: 11400000, guid: 92c7ceaa927424836a3b95fbe605fe02, type: 2}
+  GalaxyDeckCards:
+  - {fileID: 11400000, guid: 656f121799abc40f2b592cb6d3155743, type: 2}
+  - {fileID: 11400000, guid: 55a83079b8d384f65a997b35484859e5, type: 2}
+  - {fileID: 11400000, guid: 92f1d20f2f39f4fe89970e691d6b286b, type: 2}
+  - {fileID: 11400000, guid: f205e6da40d9a47f684f271fc9870183, type: 2}
+  - {fileID: 11400000, guid: f1af88b46f8384bb8be464be82be8124, type: 2}
+  - {fileID: 11400000, guid: d88003733dbc84131b985070ff861b26, type: 2}
+  - {fileID: 11400000, guid: 58a2936cc5abf469a9f91e5ea14bd753, type: 2}
+  - {fileID: 11400000, guid: 9fee51e40947047c7ba725e0334cc51c, type: 2}
+  bodyPrefab: {fileID: 1626665718532272978, guid: fd02408e5750e4c34a51db9c748c9b27, type: 3}
+  CapitalShipBodyPrefab: {fileID: 1626665718532272978, guid: 50ed8ba7c778149b28ce57e0a8677186, type: 3}
