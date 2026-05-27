@@ -113,14 +113,6 @@ public class Card : ScriptableObject
         }
     }
 
-    public void Reaction()
-    {
-        foreach (EffectEntry e in reactionEffects)
-        {
-            e.effect.Resolve(CardGame.Instance, e.data);
-        }
-    }
-
 
     public void CommitToAttack(GameObject attackedCard)
     {
