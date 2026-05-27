@@ -142,7 +142,7 @@ public class CardBody : MonoBehaviour
         {
             if (cardInfo.ValidShopDrop(targetZone)) //card is from shop (purchases if valid)
             {
-                CardGame.Instance.currentPlayer.PurchaseCard(cardInfo);
+                ManagePurchases.PurchaseCard(cardInfo, CardGame.Instance.currentPlayer);
 
             }
             else if (cardInfo.ValidPlay(targetZone)) //card is being played from hand
