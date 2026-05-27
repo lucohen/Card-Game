@@ -150,19 +150,7 @@ public class Player : MonoBehaviour
 
     public void PurchaseCard(Card card)
     {
-        if (card.cost <= resources)
-        {
-            LoseResources(card.cost);
-            card.currentAlliegance = faction;
-            card.MoveInfo(discardPile);
-            StartCoroutine(CardMovementManager.Instance.MoveFromZone(discardPile.transform, card.body));
-            StartCoroutine(CardGame.Instance.galaxyShop.RefillHand(3));
-        }
-        else
-        {
-            Debug.Log("Not Enough Resources");
-            card.body.Move(card.body.slot.transform);
-        }
+        ManagePurchases.PurchaseCard(card, this);
     }
 
     //public void PlayCard(Card card, CardZoneBase targetZone)
