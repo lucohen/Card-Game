@@ -15,6 +15,7 @@ public class CardBody : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI costText;
     public Image cardImage;
+    private bool marked;
     private Transform target;
     private float moveSpeed;
     public CardZoneEnum currentZoneType;
@@ -32,7 +33,10 @@ public class CardBody : MonoBehaviour
         
     }
 
-
+    private void OnDisable()
+    {
+        CardGame.Instance.UnregisterReactions(cardInfo.reactions);
+    }
 
     void Update()
     {
@@ -115,7 +119,7 @@ public class CardBody : MonoBehaviour
 
     }
 
-    public void Drop() //check the zone under the card. If it's a valid place to drop it, move the card to that zone and remove the old slot
+    public void Drop() //check what is under the card and act accordingly
     {
         if (cardInfo.currentLocation is PlayArea)
         {
@@ -142,7 +146,7 @@ public class CardBody : MonoBehaviour
         {
             if (cardInfo.ValidShopDrop(targetZone)) //card is from shop (purchases if valid)
             {
-                ManagePurchases.PurchaseCard(cardInfo, CardGame.Instance.currentPlayer);
+                CardGame.Instance.currentPlayer.PurchaseCard(cardInfo);
 
             }
             else if (cardInfo.ValidPlay(targetZone)) //card is being played from hand
@@ -182,14 +186,29 @@ public class CardBody : MonoBehaviour
 
     public void OnClick()
     {
-        Debug.Log(cardInfo.currentLocation + " | " + cardInfo.cardName + " | " + cardInfo.GetCardID());
-        Debug.Log(cardInfo is CapitalShip);
-        CardDisplayer.Instance.DisplayCard(cardInfo);
+        if (ActionManager.Instance.HasPendingActions)
+        {
+            var current = ActionManager.Instance.Current;
+
+            if (current.IsValidTarget(cardInfo))
+            {
+                Mark();
+                current.Execute(cardInfo);
+            }
+            return; // Always block normal actions while pending
+        }
+        else
+        {
+            cardInfo.ActivateAbility();
+        }
+        
     }
 
     public void OnHold()
     {
-
+        Debug.Log(cardInfo.currentLocation + " | " + cardInfo.cardName + " | " + cardInfo.GetCardID());
+        Debug.Log(cardInfo is CapitalShip);
+        CardDisplayer.Instance.DisplayCard(cardInfo);
     }
 
     GameObject DetectCardUnderCard()
@@ -282,9 +301,19 @@ public class CardBody : MonoBehaviour
     }
 
 
-    public void View()
+    public void Mark()
     {
-
+        if (!marked)
+        {
+            marked = true;
+            GetComponent<SpriteRenderer>().color = Color.yellow;
+            ActionManager.Instance.markedCards.Add(cardInfo);
+        }
+    }
+    public void UnMark()
+    {
+        marked = false;
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 
 }

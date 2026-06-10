@@ -19,8 +19,14 @@ public class BaseBody : MonoBehaviour
         baseInfo = info;
         hpText.text = baseInfo.hp.ToString();
         nameText.text = baseInfo.baseName;
+        abilityText.text = baseInfo.abilityDescription;
         beingDisplayed = false;
         displayer = baseDisplayer;
+    }
+
+    private void OnDisable()
+    {
+        CardGame.Instance.UnregisterReactions(baseInfo.reactions);
     }
 
     public void OnBaseClicked()

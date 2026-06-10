@@ -38,9 +38,9 @@ public class BaseDisplayer : MonoBehaviour
         player = currentPlayer;
         displaying = true;
         background.SetActive(true);
-        Debug.Log(columns);
+        
         int count = bases.Count;
-
+        Debug.Log(count);
         Camera cam = Camera.main;
 
         float screenHeight = 2f * cam.orthographicSize;
@@ -107,6 +107,7 @@ public class BaseDisplayer : MonoBehaviour
         ui.SetActive(true);
 
         player.ChangeBase(chosenBase.baseInfo);
+        
     }
 
     public void NoBase()

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Effects/GainStatsEffect")]
 public class GainStatsEffect : CardEffect
 {
-    public override void Resolve(CardGame game, EffectData data)
+    public override void Resolve(EffectData data)
     {
         var statsData = (GainStatsData)data;
         
@@ -14,4 +14,12 @@ public class GainStatsEffect : CardEffect
         statsData.card.IncreaseStat(statsData.force, 2);
 
     }
+}
+
+public class GainStatsData : EffectData
+{
+    public Card card;
+    public int attack;
+    public int resources;
+    public int force;
 }

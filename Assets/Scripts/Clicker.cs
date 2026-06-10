@@ -45,20 +45,22 @@ public class Clicker : MonoBehaviour
                     {
                         selectedObject = hit.collider.gameObject;
                         isDragging = false;
-                        if (selectedObject.GetComponent<CardBody>().cardInfo.CanActivateAbility())
-                        {
-                            fillBar.transform.position = mouseDownPos;
-                            isHolding = true;
-                        }
+                        
+                        fillBar.transform.position = mouseDownPos;
+                        isHolding = true;
+                        
                         CardDisplayer.Instance.HideCardDetails();
                     }
-                    if (hit.collider.CompareTag("deck"))
+                    if (!ActionManager.Instance.HasPendingActions)
                     {
-                        hit.collider.GetComponent<Deck>().OnDeckClicked();
-                    }
-                    if (hit.collider.CompareTag("base"))
-                    {
-                        hit.collider.GetComponent<BaseBody>().OnBaseClicked();
+                        if (hit.collider.CompareTag("deck"))
+                        {
+                            hit.collider.GetComponent<Deck>().OnDeckClicked();
+                        }
+                        if (hit.collider.CompareTag("base"))
+                        {
+                            hit.collider.GetComponent<BaseBody>().OnBaseClicked();
+                        }
                     }
                 }
             
@@ -66,7 +68,7 @@ public class Clicker : MonoBehaviour
         }
 
         // MOUSE HELD
-        if (Input.GetMouseButton(0) && selectedObject != null)
+        if (Input.GetMouseButton(0) && selectedObject != null && !ActionManager.Instance.HasPendingActions)
         {
             if (Vector3.Distance(Input.mousePosition, mouseDownPos) > clickThreshold)
             {
@@ -82,7 +84,7 @@ public class Clicker : MonoBehaviour
             else if (isHolding)
             {
                 doneHolding = true;
-                selectedObject.GetComponent<CardBody>().cardInfo.ActivateAbility();
+                selectedObject.GetComponent<CardBody>().OnHold();
                 selectedObject = null;
                 currentCharge = 0;
             }

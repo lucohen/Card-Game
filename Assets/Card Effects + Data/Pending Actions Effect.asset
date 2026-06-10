@@ -9,12 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b41c32fbe461144c68709d7e1d75e031, type: 3}
-  m_Name: Cloud City
+  m_Script: {fileID: 11500000, guid: f43f4db8454ee4c4086e83c74111acc1, type: 3}
+  m_Name: Pending Actions Effect
   m_EditorClassIdentifier: 
-  maxHp: 8
-  hp: 8
-  baseName: Cloud City
-  faction: 2
-  body: {fileID: 0}
-  bodyPrefab: {fileID: 7481977910786041848, guid: f34421492629b4043b9ce4ef971f7dc2, type: 3}

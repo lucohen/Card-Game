@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class CardEffect : ScriptableObject
 {
-    public abstract void Resolve(CardGame cardGame, EffectData data);
+    public abstract void Resolve(EffectData data);
 }

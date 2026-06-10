@@ -10,7 +10,7 @@ public class CardGame : MonoBehaviour
     public Player empirePlayer;
     [HideInInspector] public Player currentPlayer;
     public Deck galaxyDeck;
-    public Hand galaxyShop;
+    public GalaxyShop galaxyShop;
     public OuterRimPilotDeck orp;
     public PlayArea playArea;
     public GameBoard gameBoard;
@@ -147,6 +147,42 @@ public class CardGame : MonoBehaviour
         foreach (Card card in playArea.deckList)
         {
             card.Attack();
+        }
+    }
+
+    // Map each event type to the (effect, data) pairs listening to it
+    private Dictionary<GameEventType, List<ReactionEntry>> _reactions = new();
+
+    public void RegisterReactions(List<ReactionEntry> reactions)
+    {
+        foreach (var reaction in reactions)
+        {
+            if (reaction.trigger == null) continue;
+            var key = reaction.trigger.ListenFor;
+            if (!_reactions.ContainsKey(key))
+                _reactions[key] = new();
+            _reactions[key].Add(reaction);
+        }
+    }
+
+    public void UnregisterReactions(List<ReactionEntry> reactions)
+    {
+        foreach (var reaction in reactions)
+        {
+            if (reaction.trigger == null) continue;
+            var key = reaction.trigger.ListenFor;
+            if (_reactions.TryGetValue(key, out var list))
+                list.Remove(reaction);
+        }
+    }
+
+    public void FireEvent(GameEventType type, GameEventContext context)
+    {
+        if (!_reactions.TryGetValue(type, out var list)) return;
+        foreach (var reaction in new List<ReactionEntry>(list))
+        {
+            if (reaction.trigger.Matches(context))
+                reaction.effect.effect.Resolve(reaction.effect.data);
         }
     }
 }

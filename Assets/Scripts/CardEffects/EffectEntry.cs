@@ -9,3 +9,8 @@ public class EffectEntry
 
     [SerializeReference] public EffectData data;
 }
+
+[System.Serializable]
+public abstract class EffectData
+{
+}

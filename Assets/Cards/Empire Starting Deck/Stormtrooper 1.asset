@@ -18,14 +18,20 @@ MonoBehaviour:
   onPlayEffects: []
   Abilities: []
   onExileEffects: []
+  reactions:
+  - trigger: {fileID: 11400000, guid: a5b3c758f92fe4c64a1768c27a6027dd, type: 2}
+    effect:
+      effect: {fileID: 11400000, guid: b63993599af1c4e04afdf6b5abdfee57, type: 2}
+      data:
+        rid: 8968828071959855105
   baseAttack: 2
   baseResources: 0
   baseForce: 0
   hp: 0
   subtypes: 
-  attack: 1
-  resources: 1
-  force: 1
+  attack: 2
+  resources: 0
+  force: 0
   abilityDescription: 
   rewards: 
   cardName: Stormtrooper
@@ -37,4 +43,8 @@ MonoBehaviour:
   currentAlliegance: 2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 8968828071959855105
+      type: {class: DrawCardData, ns: , asm: Assembly-CSharp}
+      data:
+        amount: 1

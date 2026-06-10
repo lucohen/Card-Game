@@ -80,6 +80,18 @@ public class CardGroup : MonoBehaviour
         goTo.AddCard(card);
     }
 
+    public bool Contains(Card card)
+    {
+        for (int i = 0; i < deckList.Count; i++)
+        {
+            if (deckList[i].GetCardID() == card.GetCardID())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 
 }

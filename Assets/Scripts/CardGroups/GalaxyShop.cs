@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class GalaxyShop : Hand
 {
-    
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool nextCardFree;
+    public bool addNextCardToHand;
 
     
 

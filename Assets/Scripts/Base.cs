@@ -8,8 +8,12 @@ public class Base : ScriptableObject
     public int maxHp;
     [HideInInspector] public int hp;
     public string baseName;
+    [TextArea] public string abilityDescription;
     public FactionEnum faction;
     [HideInInspector] public BaseBody body;
+    public List<EffectEntry> onRevealEffects;
+    public List<ReactionEntry> reactions;
+    public bool keepAbilityDuringOpponentTurn;
     public BaseBody bodyPrefab;
     // Start is called before the first frame update
     void Start()

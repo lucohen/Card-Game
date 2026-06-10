@@ -83,6 +83,11 @@ public class Player : MonoBehaviour
         {
             baseBody.transform.position = cardGame.gameBoard.opponentBasePosition.position;
         }
+        CardGame.Instance.RegisterReactions(currentBase.reactions);
+        foreach (EffectEntry entry in currentBase.onRevealEffects)
+        {
+            entry.effect.Resolve(entry.data);
+        }
     }
 
     public void ChangeTurn()
@@ -97,12 +102,20 @@ public class Player : MonoBehaviour
         {
             hand.playing = false;
             transform.position = cardGame.gameBoard.opponentPosition.position;
+            if (!currentBase.keepAbilityDuringOpponentTurn)
+            {
+                CardGame.Instance.UnregisterReactions(currentBase.reactions);
+            }
         }
 
         else
         {
             hand.playing = true;
             transform.position = cardGame.gameBoard.playerPosition.position;
+            if (!currentBase.keepAbilityDuringOpponentTurn)
+            {
+                CardGame.Instance.RegisterReactions(currentBase.reactions);
+            }
         }
         MoveBase();
         MoveHand(hand, deck.transform);
@@ -150,23 +163,8 @@ public class Player : MonoBehaviour
 
     public void PurchaseCard(Card card)
     {
-        ManagePurchases.PurchaseCard(card, this);
+        ManagePurchases.Instance.PurchaseCard(card, this);
     }
-
-    //public void PlayCard(Card card, CardZoneBase targetZone)
-    //{
-    //    if (!card.hasBeenPlayed)
-    //    {
-    //        GainResources(card.resources);
-    //        card.Move(targetZone.hand);
-    //        CardMovementManager.Instance.MoveBetweenZones(targetZone, card.body);
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("Card already played");
-    //        card.body.Move(card.body.slot.transform);
-    //    }
-    //}
 
     public int NumCapitalShips()
     {

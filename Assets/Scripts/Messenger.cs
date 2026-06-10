@@ -23,4 +23,15 @@ public class Messenger : MonoBehaviour
         yield return new WaitForSeconds(2);
         messageBox.SetActive(false);
     }
+
+    public void ShowPrompt(string m)
+    {
+        message.text = m;
+        messageBox.SetActive(true);
+    }
+
+    public void HidePrompt()
+    {
+        messageBox.SetActive(false);
+    }
 }

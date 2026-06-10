@@ -14,7 +14,7 @@ public class Card : ScriptableObject
     public List<EffectEntry> onPlayEffects;
     public List<EffectEntry> Abilities;
     public List<EffectEntry> onExileEffects;
-    public List<EffectEntry> reactionEffects;
+    public List<ReactionEntry> reactions;
     public int baseAttack;
     public int baseResources;
     public int baseForce;
@@ -31,6 +31,7 @@ public class Card : ScriptableObject
     private int cardID;
     [HideInInspector] public bool hasActivated = false;
     [HideInInspector] public bool hasAttacked = false;
+    public bool addToHandFromShop;
     public FactionEnum faction;
     [HideInInspector] public FactionEnum currentAlliegance;
     private GameObject targetToAttack;
@@ -40,11 +41,6 @@ public class Card : ScriptableObject
     {
         currentAlliegance = faction;
     }
-
-
-
-
-
 
 
     public void MoveInfo(CardGroup deck)         //Register the card in another deck/hand 
@@ -85,6 +81,7 @@ public class Card : ScriptableObject
             MoveInfo(targetZone.hand);
             CardMovementManager.Instance.MoveBetweenZones(targetZone, body);
             ForceBar.Instance.MoveBar(baseForce);
+            CardGame.Instance.RegisterReactions(reactions);
         }
         else
         {
@@ -95,12 +92,12 @@ public class Card : ScriptableObject
 
     public void ActivateAbility()
     {
-        if (!hasActivated)
+        if (!hasActivated && CanActivateAbility())
         {
             Debug.Log("Activate");
             foreach (EffectEntry e in Abilities)
             {
-                e.effect.Resolve(CardGame.Instance, e.data);
+                e.effect.Resolve(e.data);
             }
             hasActivated = true;
             SpriteRenderer sr = body.GetComponent<SpriteRenderer>();
@@ -113,13 +110,6 @@ public class Card : ScriptableObject
         }
     }
 
-    public void Reaction()
-    {
-        foreach (EffectEntry e in reactionEffects)
-        {
-            e.effect.Resolve(CardGame.Instance, e.data);
-        }
-    }
 
 
     public void CommitToAttack(GameObject attackedCard)
@@ -175,6 +165,11 @@ public class Card : ScriptableObject
             return card.faction != faction && (card.body.currentZoneType == CardZoneEnum.Shop || card.body.currentZoneType == CardZoneEnum.CapitalShipArea);
         }
         return false;
+    }
+
+    public bool MatchesPlayerFaction(Player player)
+    {
+        return (faction == FactionEnum.Neutral || faction == player.faction);
     }
 
     //public bool ValidReturn(CardZoneBase targetZone) // Check if card can be returned from play area to hand
@@ -238,7 +233,6 @@ public class Card : ScriptableObject
 
     public void IncreaseStat(int amount, int type) //for type, 0 is attack, 1 is resources, 2 is force
     {
-        Debug.Log("INCREASE STAT");
         if (type == 0)
         {
             attack += amount;
@@ -262,7 +256,7 @@ public class Card : ScriptableObject
         {
             foreach (EffectEntry e in onPlayEffects)
             {
-                e.effect.Resolve(CardGame.Instance, e.data);
+                e.effect.Resolve(e.data);
             }
         }
     }
@@ -273,7 +267,7 @@ public class Card : ScriptableObject
         {
             foreach (EffectEntry e in onExileEffects)
             {
-                e.effect.Resolve(CardGame.Instance, e.data);
+                e.effect.Resolve(e.data);
             }
         }
     }
