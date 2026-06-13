@@ -44,6 +44,7 @@ public class CardGame : MonoBehaviour
     private IEnumerator StartBuffer()
     {
         yield return new WaitForSeconds(2f);
+        Debug.Log("test");
         canClick = true;
     }
 

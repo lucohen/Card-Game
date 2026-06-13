@@ -38,8 +38,6 @@ public class CardDisplayer : MonoBehaviour
         if (card.currentAlliegance == CardGame.Instance.currentPlayer.faction)
         {
             exileButton.SetActive(true);
-            Debug.Log(card.currentAlliegance);
-            Debug.Log(card.currentLocation);
         }
         else
         {
