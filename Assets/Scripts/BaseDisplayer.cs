@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class BaseDisplayer : MonoBehaviour
 {
-    public static BaseDisplayer Instance;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
     public int columns = 2;
     public float horizontalPaddingPercent = 0f; // 10% margins
     public float verticalPaddingPercent = 0.1f;
@@ -26,7 +21,16 @@ public class BaseDisplayer : MonoBehaviour
     // Start is called before the first frame update
 
     public GameObject ui;
-    
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 
     public void DisplayBases(List<Base> bases, Player currentPlayer)
     {
@@ -60,7 +64,7 @@ public class BaseDisplayer : MonoBehaviour
 
             bases[i].body = bodyPrefab;
             BaseBody newBase = Instantiate(bases[i].body);
-            newBase.Initialize(bases[i]);
+            newBase.Initialize(bases[i], this);
 
             float x = startX + col * spacingX;
             float y = startY - row * spacingY;

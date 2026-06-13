@@ -20,18 +20,6 @@ public class CardDatabase : ScriptableObject
     // Start is called before the first frame update
     public void Awake()
     {
-        foreach (Card card in RebelStarterCards)
-        {
-            card.currentAlliegance = FactionEnum.Rebels;
-        }
-        foreach (Card card in EmpireStarterCards)
-        {
-            card.currentAlliegance = FactionEnum.Empire;
-        }
-        foreach (Card card in GalaxyDeckCards)
-        {
-            card.currentAlliegance = FactionEnum.Neutral;
-        }
         AllCards = new List<Card>();
         AllCards.AddRange(RebelStarterCards);
         AllCards.AddRange(EmpireStarterCards);
