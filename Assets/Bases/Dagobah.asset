@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b41c32fbe461144c68709d7e1d75e031, type: 3}
-  m_Name: Lothal 4
+  m_Name: Dagobah
   m_EditorClassIdentifier: 
   maxHp: 8
   hp: 8

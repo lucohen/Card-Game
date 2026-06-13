@@ -27,9 +27,9 @@ public class CardMovementManager : MonoBehaviour
         Slot newSlot = newZone.CreateSlot();
         card.slot = newSlot;
         card.currentZoneType = newZone.ZoneType;
-        Debug.Log(newZone.ZoneType + " | " + card.currentZoneType);
+        //Debug.Log(newZone.ZoneType + " | " + card.currentZoneType);
         card.currentZone = newZone;
-        Debug.Log(newZone + " | " + card.currentZone);
+        //Debug.Log(newZone + " | " + card.currentZone);
         card.Move(card.slot.transform);
     }
 
