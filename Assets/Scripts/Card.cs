@@ -33,13 +33,13 @@ public class Card : ScriptableObject
     [HideInInspector] public bool hasAttacked = false;
     public bool addToHandFromShop;
     public FactionEnum faction;
-    [HideInInspector] public FactionEnum currentAlliegance;
+    [HideInInspector] public FactionEnum currentAlliegance = FactionEnum.Neutral;
     private GameObject targetToAttack;
 
 
-    private void Awake()
+    private void OnEnable()
     {
-        currentAlliegance = faction;
+        
     }
 
 

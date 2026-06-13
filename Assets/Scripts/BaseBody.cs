@@ -14,14 +14,14 @@ public class BaseBody : MonoBehaviour
     [HideInInspector] public bool beingDisplayed;
     public BaseDisplayer displayer;
 
-    public void Initialize(Base info, BaseDisplayer baseDisplayer)
+    public void Initialize(Base info)
     {
         baseInfo = info;
         hpText.text = baseInfo.hp.ToString();
         nameText.text = baseInfo.baseName;
         abilityText.text = baseInfo.abilityDescription;
         beingDisplayed = false;
-        displayer = baseDisplayer;
+        displayer = BaseDisplayer.Instance;
     }
 
     private void OnDisable()

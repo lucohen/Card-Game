@@ -15,7 +15,6 @@ public class ManagePurchases : MonoBehaviour
     // Start is called before the first frame update
     public void PurchaseCard(Card card, Player player)
     {
-        Debug.Log("Test");
         bool free = CardGame.Instance.galaxyShop.nextCardFree;
         bool addToHand = CardGame.Instance.galaxyShop.addNextCardToHand;
         if (card.cost <= player.resources || free)

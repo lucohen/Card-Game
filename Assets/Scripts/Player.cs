@@ -20,7 +20,6 @@ public class Player : MonoBehaviour
     [HideInInspector] BaseBody baseBody;
     public int basesLeft;
     public Player opponent;
-    public BaseDisplayer displayer;
     [HideInInspector] public bool myTurn;
     public CardGame cardGame;
 
@@ -51,7 +50,7 @@ public class Player : MonoBehaviour
     public void DisplayBases()
     {
         bases.Remove(currentBase);
-        displayer.DisplayBases(bases, this);
+        BaseDisplayer.Instance.DisplayBases(bases, this);
     }
 
     public void ChangeBase(Base chosenBase)
@@ -74,7 +73,7 @@ public class Player : MonoBehaviour
         Debug.Log(currentBase.hp + "/" + currentBase.maxHp);
         baseBody = Instantiate(currentBase.bodyPrefab);
         currentBase.body = baseBody;
-        baseBody.Initialize(currentBase, displayer);
+        baseBody.Initialize(currentBase);
         if (myTurn)
         {
             baseBody.transform.position = cardGame.gameBoard.playerBasePosition.position;
