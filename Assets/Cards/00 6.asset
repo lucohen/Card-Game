@@ -18,21 +18,25 @@ MonoBehaviour:
   onPlayEffects: []
   Abilities: []
   onExileEffects: []
+  reactions: []
   baseAttack: 0
   baseResources: 0
   baseForce: 0
   hp: 0
+  subtypes: 
   attack: 0
   resources: 0
   force: 0
   abilityDescription: 
   rewards: 
   cardName: 06
-  cost: 0
+  image: {fileID: 0}
+  cost: 1
   hasActivated: 0
   hasAttacked: 0
+  addToHandFromShop: 0
   faction: 1
-  currentAlliegance: 1
+  currentAlliegance: 2
   references:
     version: 2
     RefIds: []

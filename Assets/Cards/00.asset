@@ -15,13 +15,28 @@ MonoBehaviour:
   body: {fileID: 0}
   currentLocation: {fileID: 0}
   bodyPrefab: {fileID: 1626665718532272978, guid: fd02408e5750e4c34a51db9c748c9b27, type: 3}
+  onPlayEffects: []
+  Abilities: []
+  onExileEffects: []
+  reactions: []
+  baseAttack: 0
+  baseResources: 0
+  baseForce: 0
+  hp: 0
+  subtypes: 
   attack: 1
   resources: 1
   force: 0
-  hp: 0
+  abilityDescription: 
   rewards: 
   cardName: 00
-  cost: 0
-  hasBeenPlayed: 0
+  image: {fileID: 0}
+  cost: 1
+  hasActivated: 0
   hasAttacked: 0
+  addToHandFromShop: 0
   faction: 0
+  currentAlliegance: 0
+  references:
+    version: 2
+    RefIds: []

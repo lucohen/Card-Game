@@ -306,14 +306,15 @@ public class CardBody : MonoBehaviour
         if (!marked)
         {
             marked = true;
-            GetComponent<SpriteRenderer>().color = Color.yellow;
+            Debug.Log("Mark");
+            cardImage.color = Color.yellow;
             ActionManager.Instance.markedCards.Add(cardInfo);
         }
     }
     public void UnMark()
     {
         marked = false;
-        GetComponent<SpriteRenderer>().color = Color.white;
+        cardImage.color = Color.white;
     }
 
 }

@@ -9,7 +9,7 @@ public class HandZone : CardZoneBase
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("card") && hand.GetComponent<Hand>().playing)
+        if (other.CompareTag("card") && hand.GetComponent<Hand>().playing && other.GetComponent<CardBody>().isDragging)
         {
             if (other.GetComponent<CardBody>().cardInfo.ValidShopDrop(this))
             {

@@ -42,10 +42,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: be181d6020a414233a1450339b52cb6e, type: 2}
   - {fileID: 11400000, guid: f3d8449c5e1bd4e93b593915c4972a94, type: 2}
   - {fileID: 11400000, guid: 7f335ca6ebebe485a95c0a517e5c197b, type: 2}
-  - {fileID: 11400000, guid: 2a63e34c14be64508a75caf38dfc43d5, type: 2}
+  - {fileID: 11400000, guid: 83bf4da65474042d4a42521a19fcbf21, type: 2}
   - {fileID: 11400000, guid: f7e86ba78deed4cc4a420427f630e0ce, type: 2}
   - {fileID: 11400000, guid: 550078929df7c43549d223a29ab4a758, type: 2}
-  - {fileID: 11400000, guid: 92c7ceaa927424836a3b95fbe605fe02, type: 2}
+  - {fileID: 11400000, guid: b51de10af088943c285f47981eaeafb0, type: 2}
   GalaxyDeckCards:
   - {fileID: 11400000, guid: 656f121799abc40f2b592cb6d3155743, type: 2}
   - {fileID: 11400000, guid: 55a83079b8d384f65a997b35484859e5, type: 2}

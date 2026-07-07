@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseDisplayer : MonoBehaviour
+public class CardDisplayGrid : MonoBehaviour
 {
 
     public int columns = 2;
@@ -11,42 +11,34 @@ public class BaseDisplayer : MonoBehaviour
     public float spacingX = 3.5f;
     public float spacingY = 4f;
     public GameObject background; //"Background" that blocks the clicker from hitting anything on the game board while choosing a new base
-    public List<BaseBody> displayedBases;
+    public List<CardBody> displayedCards;
     [HideInInspector] public bool displaying = false; //The body checks to ensure the bases can be selected when clicked on
-    public BaseBody bodyPrefab;
+    public CardBody bodyPrefab;
     public GameObject confirmOptions; //Another layer of blocker plane for the confirmation screen
     private Player player;
-    private BaseBody chosenBase;
+    private CardBody chosenCard;
     private Vector3 resetPosition; // puts the base back in position if not chosen
     // Start is called before the first frame update
 
     public GameObject ui;
-
-    public static BaseDisplayer Instance;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void DisplayBases(List<Base> bases, Player currentPlayer)
+    public void DisplayCards(CardGroup cards)
     {
         ui.SetActive(false);
-        player = currentPlayer;
         displaying = true;
         background.SetActive(true);
-        
-        int count = bases.Count;
+
+        int count = cards.deckList.Count;
         Debug.Log(count);
         Camera cam = Camera.main;
 
@@ -69,60 +61,24 @@ public class BaseDisplayer : MonoBehaviour
             int row = i / columns;
             int col = i % columns;
 
-            bases[i].body = bodyPrefab;
-            BaseBody newBase = Instantiate(bases[i].body);
-            newBase.Initialize(bases[i]);
+            cards.deckList[i].body = bodyPrefab;
+            CardBody newCard = Instantiate(cards.deckList[i].body);
+            newCard.Initialize(cards.deckList[i]);
 
             float x = startX + col * spacingX;
             float y = startY - row * spacingY;
 
-            newBase.transform.position = new Vector3(x, y, -2);
-            displayedBases.Add(newBase);
+            newCard.transform.position = new Vector3(x, y, -2);
+            displayedCards.Add(newCard);
         }
     }
 
-    public void Confirmation(BaseBody b)
+    public void OnClickTest()
     {
-        Debug.Log("Confirmation");
-        displaying = false;
-        confirmOptions.SetActive(true);
-        foreach (BaseBody baseBody in displayedBases)
-        {
-            if (baseBody == b)
-            {
-                resetPosition = baseBody.transform.position;
-                baseBody.transform.position = new Vector3(0, 0, -4);
-                break;
-            }
-
-        }
-        chosenBase = b;
-        confirmOptions.SetActive(true);
-    }
-
-    public void YesBase()
-    {
-        confirmOptions.SetActive(false);
-        background.SetActive(false);
-
-        for (int i = displayedBases.Count - 1; i >= 0; i--)
-        {
-            Destroy(displayedBases[i].gameObject);
-        }
-
-        displayedBases.Clear();
-        ui.SetActive(true);
-
-        player.ChangeBase(chosenBase.baseInfo);
-        
-    }
-
-    public void NoBase()
-    {
-        confirmOptions.SetActive(false);
-        chosenBase.transform.position = resetPosition;
-        displaying = true;
 
     }
 
+    
+
+    
 }

@@ -18,19 +18,23 @@ MonoBehaviour:
   onPlayEffects: []
   Abilities: []
   onExileEffects: []
+  reactions: []
   baseAttack: 0
   baseResources: 1
   baseForce: 0
   hp: 0
+  subtypes: 
   attack: 0
-  resources: 0
+  resources: 1
   force: 0
   abilityDescription: 
   rewards: 
   cardName: Alliance Shuttle
+  image: {fileID: 21300000, guid: dd3c556d1431e4a2da8c117a18c69c9a, type: 3}
   cost: 0
   hasActivated: 0
   hasAttacked: 0
+  addToHandFromShop: 0
   faction: 0
   currentAlliegance: 0
   references:

@@ -10,27 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b41c32fbe461144c68709d7e1d75e031, type: 3}
-  m_Name: Corellia
+  m_Name: Dagobah
   m_EditorClassIdentifier: 
   maxHp: 8
   hp: 8
-  baseName: Corellia
-  abilityDescription: When you reveal Corellia, purchase an Empire or neutral card
-    from the galaxy row for free and add it to your hand.
-  faction: 2
+  baseName: Dagobah
+  abilityDescription: When you reveal Dagoah, exile up to 3 cards from your hand
+    or discard pile.
+  faction: 0
   body: {fileID: 0}
-  onRevealEffects:
-  - effect: {fileID: 11400000, guid: bd915a548e1d54eef9399f5d71408cfc, type: 2}
-    data:
-      rid: 5917032032103038977
+  onRevealEffects: []
   reactions: []
   keepAbilityDuringOpponentTurn: 0
   bodyPrefab: {fileID: 7481977910786041848, guid: f34421492629b4043b9ce4ef971f7dc2, type: 3}
   references:
     version: 2
-    RefIds:
-    - rid: 5917032032103038977
-      type: {class: FreeCardData, ns: , asm: Assembly-CSharp}
-      data:
-        amount: 1
-        addToHand: 1
+    RefIds: []

@@ -8,7 +8,7 @@ public class FreeCardAction : PendingAction
     private readonly int _amount;
     private readonly bool _addToHand;
 
-    public override string Prompt => $"Discard {_amount} card(s).";
+    public override string Prompt => $"Purchase {_amount} card(s).";
 
     public FreeCardAction(GalaxyShop shop, int amount, bool addToHand)
     {
@@ -23,10 +23,12 @@ public class FreeCardAction : PendingAction
     public override void Execute(object target)
     {
         Player player = CardGame.Instance.currentPlayer;
-        if (target is Card card && card.MatchesPlayerFaction(player)){
+        if (target is Card card && card.MatchesPlayerFaction(player))
+        {
             CardGame.Instance.galaxyShop.nextCardFree = true;
             if (_addToHand) CardGame.Instance.galaxyShop.addNextCardToHand = true;
             player.PurchaseCard(card);
+            ActionManager.Instance.Resolve();
         }
     }
 
@@ -37,3 +39,24 @@ public class FreeCardAction : PendingAction
         => Messenger.Instance.HidePrompt();
 }
 
+[CreateAssetMenu(menuName = "Effects/FreeCardEffect")]
+public class FreeCardEffect : CardEffect                //Card effect that pushes the action onto the stack
+
+{
+    public override void Resolve(EffectData data)
+    {
+
+        var freeCardData = (FreeCardData)data;
+        
+        FreeCardAction action = new FreeCardAction(CardGame.Instance.galaxyShop, freeCardData.amount, freeCardData.addToHand);
+
+        ActionManager.Instance.Push(action);
+
+    }
+}
+
+public class FreeCardData : EffectData
+{
+    public int amount;
+    public bool addToHand;
+}

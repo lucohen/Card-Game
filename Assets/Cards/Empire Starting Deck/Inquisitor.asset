@@ -20,7 +20,11 @@ MonoBehaviour:
     data:
       rid: 6862892277570469890
   Abilities: []
-  onExileEffects: []
+  onExileEffects:
+  - effect: {fileID: 11400000, guid: f02935e6433b4498da5af42393e403e1, type: 2}
+    data:
+      rid: 5917032032103038978
+  reactions: []
   baseAttack: 0
   baseResources: 0
   baseForce: 0
@@ -36,11 +40,17 @@ MonoBehaviour:
   cost: 0
   hasActivated: 0
   hasAttacked: 0
+  addToHandFromShop: 0
   faction: 2
   currentAlliegance: 2
   references:
     version: 2
     RefIds:
+    - rid: 5917032032103038978
+      type: {class: DiscardCardsData, ns: , asm: Assembly-CSharp}
+      data:
+        whichHand: 0
+        amount: 2
     - rid: 6862892277570469890
       type: {class: ChooseEffectData, ns: , asm: Assembly-CSharp}
       data:
