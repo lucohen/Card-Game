@@ -36,14 +36,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2139eba0f814748f088d2bc0e1c324c5, type: 2}
   - {fileID: 11400000, guid: 6cd08d4f6dfec4f229f07667dc2696f6, type: 2}
   EmpireStarterCards:
-  - {fileID: 11400000, guid: b273d4776c1324e16ab261993057d484, type: 2}
-  - {fileID: 11400000, guid: 7196f02522e984b28b8193db80f3ad6a, type: 2}
   - {fileID: 11400000, guid: 3e0cc214836e244a2a6e7bbedbe4e8af, type: 2}
   - {fileID: 11400000, guid: be181d6020a414233a1450339b52cb6e, type: 2}
   - {fileID: 11400000, guid: f3d8449c5e1bd4e93b593915c4972a94, type: 2}
   - {fileID: 11400000, guid: 7f335ca6ebebe485a95c0a517e5c197b, type: 2}
-  - {fileID: 11400000, guid: 83bf4da65474042d4a42521a19fcbf21, type: 2}
   - {fileID: 11400000, guid: f7e86ba78deed4cc4a420427f630e0ce, type: 2}
+  - {fileID: 11400000, guid: 83bf4da65474042d4a42521a19fcbf21, type: 2}
+  - {fileID: 11400000, guid: 7196f02522e984b28b8193db80f3ad6a, type: 2}
+  - {fileID: 11400000, guid: b273d4776c1324e16ab261993057d484, type: 2}
   - {fileID: 11400000, guid: 550078929df7c43549d223a29ab4a758, type: 2}
   - {fileID: 11400000, guid: b51de10af088943c285f47981eaeafb0, type: 2}
   GalaxyDeckCards:

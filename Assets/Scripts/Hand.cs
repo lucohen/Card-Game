@@ -13,9 +13,10 @@ public class Hand : Deck
     public override void AddCard(Card card) //adds the card info to the hand's "deck" and creates the body if it is drawn from a deck
     {
         base.AddCard(card);
+        Debug.Log(card.body == null);
         if (card.body == null)
         {
-            //Debug.Log("body was null, instantiate at " + mainDeck);         
+            Debug.Log("body was null, instantiate at " + mainDeck);         
             CardBody newCard = Instantiate(card.bodyPrefab, mainDeck.transform.position, mainDeck.transform.rotation);
             card.body = newCard;
             newCard.Initialize(card);
@@ -24,7 +25,8 @@ public class Hand : Deck
         }
         else
         {
-            //Debug.Log("Body was not null, don't instantiate");
+            Debug.Log("Body was not null, don't instantiate");
+            Debug.Log(card.body.transform.position);
         }
 
     }
