@@ -59,8 +59,10 @@ public class CardDisplayGrid : MonoBehaviour
             int row = i / columns;
             int col = i % columns;
 
-            CardBody newCard = Instantiate(cards.deckList[i].body);
+            CardBody newCard = Instantiate(cards.deckList[i].bodyPrefab);
+            cards.deckList[i].body = newCard;
             newCard.Initialize(cards.deckList[i]);
+
             Debug.Log("5");
             float x = startX + col * spacingX;
             float y = startY - row * spacingY;

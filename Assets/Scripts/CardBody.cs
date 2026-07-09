@@ -25,14 +25,13 @@ public class CardBody : MonoBehaviour
     public float dragHeight = 2f;
     [HideInInspector] public Card cardInfo;
     [HideInInspector] public bool isDragging = false;
-    [HideInInspector] public bool isMoving =false;
+    public bool isMoving =false;
     private LineRenderer line;
     // Start is called before the first frame update
     void Start()
     {
         
     }
-
     private void OnDisable()
     {
         CardGame.Instance.UnregisterReactions(cardInfo.reactions);

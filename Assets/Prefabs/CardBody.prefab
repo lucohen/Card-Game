@@ -885,7 +885,7 @@ MonoBehaviour:
   dragHeight: 2
   cardInfo: {fileID: 0}
   isDragging: 0
-  isMoving: 1
+  isMoving: 0
 --- !u!65 &-1758360500670225205
 BoxCollider:
   m_ObjectHideFlags: 0
