@@ -27,6 +27,7 @@ public class CardBody : MonoBehaviour
     [HideInInspector] public bool isDragging = false;
     public bool isMoving =false;
     private LineRenderer line;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -191,7 +192,6 @@ public class CardBody : MonoBehaviour
 
             if (current.IsValidTarget(cardInfo))
             {
-                Mark();
                 current.Execute(cardInfo);
             }
             return; // Always block normal actions while pending
@@ -314,6 +314,11 @@ public class CardBody : MonoBehaviour
     {
         marked = false;
         cardImage.color = Color.white;
+    }
+
+    public bool IsDraggable()
+    {
+        return (cardInfo.currentAlliegance != CardGame.Instance.currentPlayer.opponent.faction && currentZoneType != CardZoneEnum.None);
     }
 
 }

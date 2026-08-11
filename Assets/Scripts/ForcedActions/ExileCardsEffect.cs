@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiscardAction : PendingAction
+public class ExileAction : PendingAction
 {
     private readonly Hand _hand;
     private readonly int _max;
@@ -10,9 +10,9 @@ public class DiscardAction : PendingAction
     private readonly HashSet<Card> _selected = new();
     private readonly WhichDisplayGrid _displayGrid;
 
-    public override string Prompt => $"Discard {_max} card(s). ({_selected.Count}/{_max} selected)";
+    public override string Prompt => $"Exile {_max} card(s). ({_selected.Count}/{_max} selected)";
 
-    public DiscardAction(Hand hand, int max, int min, WhichDisplayGrid displayGrid)
+    public ExileAction(Hand hand, int max, int min, WhichDisplayGrid displayGrid)
     {
         _hand = hand;
         _max = max;
@@ -49,6 +49,7 @@ public class DiscardAction : PendingAction
         }
         else if (_selected.Count < _max)
         {
+            Debug.Log(_selected.Count + " | " + _max);
             _selected.Add(card);
             card.body.Mark();
         }
@@ -78,11 +79,7 @@ public class DiscardAction : PendingAction
         {
             Debug.Log(card.cardName);
             card.body.UnMark();
-            if (card.currentLocation is Hand)
-                ((Hand)card.currentLocation).Discard(card);
-            else if (card.currentLocation is PlayArea)
-                ((PlayArea)card.currentLocation).Discard(card, CardGame.Instance.currentPlayer.discardPile); //kind of messy but whatever for now
-            
+            CardGame.Instance.StartCoroutine(card.ExileRoutine());
         }
         Messenger.Instance.HidePrompt();
         ActionManager.Instance.confirmButton.SetActive(false);
@@ -90,16 +87,16 @@ public class DiscardAction : PendingAction
     }
 }
 
-[CreateAssetMenu(menuName = "Effects/DiscardCardsEffect")]
-public class DiscardCardsEffect : CardEffect                //Card effect that pushes the action onto the stack
+[CreateAssetMenu(menuName = "Effects/ExileCardsEffect")]
+public class ExileCardsEffect : CardEffect                //Card effect that pushes the action onto the stack
 
 {
     private Hand hand;
     public override void Resolve(EffectData data)
     {
 
-        var discardData = (DiscardCardsData)data;
-        switch (discardData.whichPlayer)
+        var exileData = (ExileCardsData)data;
+        switch (exileData.whichHand)
         {
             case WhichPlayer.player:
                 hand = CardGame.Instance.currentPlayer.hand;
@@ -111,23 +108,27 @@ public class DiscardCardsEffect : CardEffect                //Card effect that p
                 hand = CardGame.Instance.galaxyShop.hand;
                 break;
         }
-        DiscardAction action = new DiscardAction(hand, discardData.amount, discardData.minAmount, discardData.DisplayGrid);
+        ExileAction action = new ExileAction(hand, exileData.amount, exileData.minAmount, exileData.DisplayGrid);
 
         ActionManager.Instance.Push(action);
-        
+
     }
 }
 
-public class DiscardCardsData : EffectData
+public class ExileCardsData : EffectData
 {
-    public WhichPlayer whichPlayer;
+    public WhichPlayer whichHand;
     public int amount;
     public int minAmount;
     public WhichDisplayGrid DisplayGrid;
 }
 
-public enum WhichPlayer{
-    player,
-    opponent,
-    shop,
+public enum WhichDisplayGrid
+{
+    None,
+    playerDeck,
+    playerDiscard,
+    galaxyDeck,
+    galaxyDiscard
 }
+

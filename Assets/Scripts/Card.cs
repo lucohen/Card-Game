@@ -212,14 +212,17 @@ public class Card : ScriptableObject
         body.SetCardColor();
     }
 
-    public IEnumerator Exile()
+
+    public IEnumerator ExileRoutine()
     {
+        Debug.Log("Exile");
         currentLocation.RemoveCard(cardID);
-        if (body != null)
+        if (body != null && body.currentZoneType != CardZoneEnum.None)
         {
             body.Exile();
         }
-        ActivateOnExileAbilities();
+        if (currentAlliegance != FactionEnum.Neutral)
+            ActivateOnExileAbilities();
         yield return new WaitForFixedUpdate();
         CardDatabase.Instance.Exile(this);
     }

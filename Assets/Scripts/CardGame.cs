@@ -185,4 +185,5 @@ public class CardGame : MonoBehaviour
                 reaction.effect.effect.Resolve(reaction.effect.data);
         }
     }
+
 }

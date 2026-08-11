@@ -111,13 +111,13 @@ public class CardDisplayer : MonoBehaviour
     {
         if (displayedCard != null)
         {
-            StartCoroutine(displayedCard.Exile());
+            StartCoroutine(displayedCard.ExileRoutine());
             StopShowing();
         }
         else
         {
             HideCardDetails();
-            StartCoroutine(Clicker.Instance.currentHoveredCard.cardInfo.Exile());
+            StartCoroutine(Clicker.Instance.currentHoveredCard.cardInfo.ExileRoutine());
         }
     }
 

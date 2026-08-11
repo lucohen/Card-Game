@@ -48,7 +48,7 @@ public class Clicker : MonoBehaviour
                         
                         fillBar.transform.position = mouseDownPos;
                         isHolding = true;
-                        
+                        Debug.Log(selectedObject.GetComponent<CardBody>().currentZoneType);
                         CardDisplayer.Instance.HideCardDetails();
                     }
                     if (!ActionManager.Instance.HasPendingActions)
@@ -70,7 +70,7 @@ public class Clicker : MonoBehaviour
         // MOUSE HELD
         if (Input.GetMouseButton(0) && selectedObject != null && !ActionManager.Instance.HasPendingActions)
         {
-            if (Vector3.Distance(Input.mousePosition, mouseDownPos) > clickThreshold)
+            if (Vector3.Distance(Input.mousePosition, mouseDownPos) > clickThreshold && selectedObject.GetComponent<CardBody>().IsDraggable())
             {
                 isDragging = true;
                 selectedObject.GetComponent<CardBody>().isDragging = true;

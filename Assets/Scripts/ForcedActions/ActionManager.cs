@@ -37,5 +37,9 @@ public class ActionManager : MonoBehaviour
         {
             Resolve();
         }
+        else if (Current is ExileAction exile && exile.CanConfirm)
+        {
+            Resolve();
+        }
     }
 }

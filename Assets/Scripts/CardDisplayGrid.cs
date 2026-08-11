@@ -19,6 +19,12 @@ public class CardDisplayGrid : MonoBehaviour
     // Start is called before the first frame update
 
     public GameObject ui;
+    public static CardDisplayGrid Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
 
@@ -30,8 +36,13 @@ public class CardDisplayGrid : MonoBehaviour
 
     }
 
-    public void DisplayCards(CardGroup cards)
+    public void DisplayCards(WhichDisplayGrid grid)
     {
+        if (grid == WhichDisplayGrid.None)
+        {
+            return;
+        }
+        CardGroup cards = SelectGroup(grid);
         ui.SetActive(false);
         displaying = true;
         background.SetActive(true);
@@ -52,10 +63,8 @@ public class CardDisplayGrid : MonoBehaviour
 
         float startX = -usableWidth / 2f + spacingX / 2f;
         float startY = usableHeight / 2f - spacingY / 2f;
-        Debug.Log("COUNT: " + count);
         for (int i = 0; i < count; i++)
         {
-            Debug.Log("4");
             int row = i / columns;
             int col = i % columns;
 
@@ -63,20 +72,47 @@ public class CardDisplayGrid : MonoBehaviour
             cards.deckList[i].body = newCard;
             newCard.Initialize(cards.deckList[i]);
 
-            Debug.Log("5");
             float x = startX + col * spacingX;
             float y = startY - row * spacingY;
 
             newCard.transform.position = new Vector3(x, y, -2);
             displayedCards.Add(newCard);
-            Debug.Log("6");
         }
-        Debug.Log("7");
     }
 
     public void OnClickTest()
     {
         Debug.Log("Control ts");
+    }
+
+    public void StopDisplaying()
+    {
+        confirmOptions.SetActive(false);
+        background.SetActive(false);
+        foreach (CardBody card in displayedCards)
+        {
+            Destroy(card.gameObject);
+
+        }
+        displayedCards.Clear();
+        ui.SetActive(true);
+    }
+
+    public CardGroup SelectGroup(WhichDisplayGrid grid)
+    {
+        switch (grid)
+        {
+            case WhichDisplayGrid.playerDeck:
+                return CardGame.Instance.currentPlayer.deck;
+            case WhichDisplayGrid.playerDiscard:
+                return CardGame.Instance.currentPlayer.discardPile;
+            case WhichDisplayGrid.galaxyDeck:
+                return CardGame.Instance.galaxyDeck;
+            case WhichDisplayGrid.galaxyDiscard:
+                return CardGame.Instance.galaxyShop.discardPile;
+        }
+        return null;
+        
     }
 
     
